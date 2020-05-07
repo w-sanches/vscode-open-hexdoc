@@ -1,7 +1,8 @@
 import * as vscode from 'vscode';
+const got = require('got');
 
 export function activate(context: vscode.ExtensionContext) {
-	const disposable = vscode.commands.registerCommand('hexdocs-finder.openHexDoc', () => {
+	const disposable = vscode.commands.registerCommand('open-hexdoc.openHexDoc', () => {
 		vscode.workspace.findFiles('mix.lock').then((files) => {
 			vscode.workspace.openTextDocument(files[0]).then((document) => {
 				const libsAndVersions = document
@@ -28,8 +29,11 @@ function toLibAndVersion(string: string): string {
 	return match ? match.splice(1).join(':') : '';
 }
 
-function openDocs(lib: string, version = '') {
-	vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(`https://hexdocs.pm/${lib}/${version}`));
+async function openDocs(lib: string, version = '') {
+	await got(`https://hexdocs.pm/${lib}/${version}`)
+		.then(() => vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(`https://hexdocs.pm/${lib}/${version}`)))
+		.catch(() => vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(`https://hexdocs.pm/${lib}`)));
+
 }
 
 export function deactivate() { }

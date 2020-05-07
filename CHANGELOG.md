@@ -7,3 +7,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## [0.0.1]
 
 - Initial release
+
+## [0.0.2]
+
+- Opens unversioned doc in case versioned version returns an error code
