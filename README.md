@@ -1,6 +1,6 @@
-# hexdocs-finder README
+# open-hexdoc README
 
-This is the README for your extension "hexdocs-finder". After writing up a brief description, we recommend including the following sections.
+This is the README for your extension "open-hexdoc". After writing up a brief description, we recommend including the following sections.
 
 ## Features
 

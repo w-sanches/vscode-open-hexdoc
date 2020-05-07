@@ -1,6 +1,7 @@
 {
-	"name": "hexdocs-finder",
-	"displayName": "HexDocs Finder",
+	"name": "open-hexdoc",
+	"publisher": "w-sanches",
+	"displayName": "Open HexDoc",
 	"description": "",
 	"version": "0.0.1",
 	"engines": {
