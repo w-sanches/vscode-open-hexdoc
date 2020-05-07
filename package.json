@@ -1,5 +1,9 @@
 {
 	"name": "open-hexdoc",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/w-sanches/vscode-open-hexdoc"
+	},
 	"publisher": "w-sanches",
 	"displayName": "Open HexDoc",
 	"description": "",
