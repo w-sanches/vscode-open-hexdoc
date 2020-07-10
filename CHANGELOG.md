@@ -4,14 +4,14 @@ All notable changes to the "open-hexdoc" extension will be documented in this fi
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## [0.0.1]
+## [0.0.3]
 
-- Initial release
+- Opens version doc for Elixir
 
 ## [0.0.2]
 
 - Opens unversioned doc in case versioned version returns an error code
 
-## [0.0.3]
+## [0.0.1]
 
-- Opens version doc for Elixir
+- Initial release
