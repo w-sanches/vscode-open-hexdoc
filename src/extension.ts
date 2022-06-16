@@ -1,10 +1,10 @@
-import * as vscode from 'vscode';
-const got = require('got');
+import * as VSCode from 'vscode';
+import got from 'got';
 
-export function activate(context: vscode.ExtensionContext) {
-	const disposable = vscode.commands.registerCommand('open-hexdoc.openHexDoc', () => {
-		vscode.workspace.findFiles('mix.lock').then((files) => {
-			vscode.workspace.openTextDocument(files[0]).then((document) => {
+export function activate(context: VSCode.ExtensionContext) {
+	const disposable = VSCode.commands.registerCommand('open-hexdoc.openHexDoc', () => {
+		VSCode.workspace.findFiles('mix.lock').then(([mixFile]) => {
+			VSCode.workspace.openTextDocument(mixFile).then((document) => {
 				findElixirVersion((elixirVersion: string) => {
 					const libsAndVersions = document
 						.getText()
@@ -15,7 +15,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 					libsAndVersions.unshift(elixirVersion);
 
-					vscode.window.showQuickPick(libsAndVersions, { canPickMany: false })
+					VSCode.window.showQuickPick(libsAndVersions, { canPickMany: false })
 						.then((pick) => {
 							if (pick) {
 								const [lib, version] = pick.split(":");
@@ -49,9 +49,8 @@ function toLibAndVersion(string: string): string {
 
 async function openDocs(lib: string, version = '') {
 	await got(`https://hexdocs.pm/${lib}/${version}`)
-		.then(() => vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(`https://hexdocs.pm/${lib}/${version}`)))
-		.catch(() => vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(`https://hexdocs.pm/${lib}`)));
-
+		.then(() => VSCode.commands.executeCommand('vscode.open', VSCode.Uri.parse(`https://hexdocs.pm/${lib}/${version}`)))
+		.catch(() => VSCode.commands.executeCommand('vscode.open', VSCode.Uri.parse(`https://hexdocs.pm/${lib}`)));
 }
 
 export function deactivate() { }
