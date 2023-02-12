@@ -37,7 +37,7 @@
 		"test": "node ./out/test/runTest.js"
 	},
 	"dependencies": {
-		"got": "^12.1.0"
+		"got": "^12.5.3"
 	},
 	"devDependencies": {
 		"@types/glob": "^7.2.0",
