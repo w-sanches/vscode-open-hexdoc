@@ -43,7 +43,8 @@ function findElixirVersion(callback: Function) {
 }
 
 function toLibAndVersion(string: string): string {
-	const match = /\s*"(.*)": {:.*, "([.\d]+)"/g.exec(string);
+	const match = /\s*"(.*)": \{:.*,\s:[^,]*,\s*"([^"]+)/g.exec(string);
+
 	return match ? match.splice(1).join(':') : '';
 }
 
