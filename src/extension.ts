@@ -1,5 +1,5 @@
 import * as VSCode from 'vscode';
-import got from 'got';
+import { spawn } from 'child_process';
 
 export function activate(context: VSCode.ExtensionContext) {
 	const disposable = VSCode.commands.registerCommand('open-hexdoc.openHexDoc', () => {
@@ -31,7 +31,6 @@ export function activate(context: VSCode.ExtensionContext) {
 }
 
 function findElixirVersion(callback: Function) {
-	const { spawn } = require('child_process');
 	const elixirVersion = spawn('elixir', ['-v']);
 
 	elixirVersion.stdout.on('data', (data: string) => {
@@ -48,7 +47,7 @@ function toLibAndVersion(string: string): string {
 }
 
 async function openDocs(lib: string, version = '') {
-	await got(`https://hexdocs.pm/${lib}/${version}`)
+	await fetch(`https://hexdocs.pm/${lib}/${version}`)
 		.then(() => VSCode.commands.executeCommand('vscode.open', VSCode.Uri.parse(`https://hexdocs.pm/${lib}/${version}`)))
 		.catch(() => VSCode.commands.executeCommand('vscode.open', VSCode.Uri.parse(`https://hexdocs.pm/${lib}`)));
 }
