@@ -35,7 +35,7 @@ function findElixirVersion(callback: Function) {
 	const elixirVersion = spawn('elixir', ['-v']);
 
 	elixirVersion.stdout.on('data', (data: string) => {
-		const match = /Elixir ([0-9]+\.[0-9]+\.[0-9]+)/g.exec(data);
+		const match = /Elixir ([0-9]+\.[0-9]+\.[0-9]+(?:-rc\.?[0-9]+)?)/g.exec(data);
 		const version = match ? `elixir:${match.splice(1)}` : '';
 
 		callback(version);
